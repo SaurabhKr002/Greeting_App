@@ -44,5 +44,37 @@ public class GreetingController {
         return response;
     }
 
+    @GetMapping
+    public Map<String, String> getGreeting(@RequestParam(required = false) String firstName,
+                                           @RequestParam(required = false) String lastName) {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", greetingService.getGreetingMessage(firstName, lastName));
+        return response;
+    }
+
+    @PostMapping
+    public Map<String, String> postGreeting(@RequestParam(required = false) String firstName,
+                                            @RequestParam(required = false) String lastName) {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", greetingService.getGreetingMessage(firstName, lastName));
+        return response;
+    }
+
+    @PutMapping
+    public Map<String, String> putGreeting(@RequestParam(required = false) String firstName,
+                                           @RequestParam(required = false) String lastName) {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", greetingService.getGreetingMessage(firstName, lastName));
+        return response;
+    }
+
+    @DeleteMapping
+    public Map<String, String> deleteGreeting(@RequestParam(required = false) String firstName,
+                                              @RequestParam(required = false) String lastName) {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", greetingService.getGreetingMessage(firstName, lastName));
+        return response;
+    }
+
 
 }
