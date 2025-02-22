@@ -4,6 +4,7 @@ import com.example.Greeting_App.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -14,6 +15,16 @@ public class GreetingController {
 
     public GreetingController(GreetingService greetingService) {
         this.greetingService = greetingService;
+    }
+    @GetMapping("/{id}")
+    public Map<String, String> getGreetingById(@PathVariable Long id) {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", greetingService.getGreetingById(id));
+        return response;
+    }
+    @GetMapping("/all")
+    public List<String> getAllGreetings() {
+        return greetingService.getAllGreetings();
     }
 
     @GetMapping
