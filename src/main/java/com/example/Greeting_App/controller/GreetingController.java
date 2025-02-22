@@ -47,6 +47,12 @@ public class GreetingController {
         response.put("message", "Hello, this is a PUT response!");
         return response;
     }
+    @PutMapping("/{id}")
+    public Map<String, String> updateGreeting(@PathVariable Long id, @RequestParam String message) {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", greetingService.updateGreetingMessage(id, message));
+        return response;
+    }
 
     @DeleteMapping
     public Map<String, String> deleteGreeting() {
