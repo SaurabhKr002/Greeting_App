@@ -1,9 +1,16 @@
 package com.example.Greeting_App.service;
 
+import com.example.Greeting_App.model.Greeting;
+import com.example.Greeting_App.repository.GreetingRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GreetingService {
+    private final GreetingRepository greetingRepository;
+    public GreetingService(GreetingRepository greetingRepository) {
+        this.greetingRepository = greetingRepository;
+    }
+
     public String getGreetingMessage() {
         return "Hello World";
     }
@@ -17,5 +24,13 @@ public class GreetingService {
         } else {
             return "Hello World";
         }
+    }
+    public String getGreetingById(Long id) {
+        return greetingRepository.findById(id)
+                .map(Greeting::getMessage)
+                .orElse("Greeting not found");
+    }
+    public void saveGreetingMessage(String message) {
+        greetingRepository.save(new Greeting(message));
     }
 }
