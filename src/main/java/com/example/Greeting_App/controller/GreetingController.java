@@ -92,6 +92,12 @@ public class GreetingController {
         response.put("message", greetingService.getGreetingMessage(firstName, lastName));
         return response;
     }
+    @DeleteMapping("/{id}")
+    public Map<String, String> deleteGreeting(@PathVariable Long id) {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", greetingService.deleteGreetingById(id));
+        return response;
+    }
 
 
 }
