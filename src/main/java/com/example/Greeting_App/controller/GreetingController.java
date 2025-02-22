@@ -1,5 +1,6 @@
 package com.example.Greeting_App.controller;
 
+import com.example.Greeting_App.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -8,6 +9,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
+
+    private final GreetingService greetingService;
+
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
 
     @GetMapping
     public Map<String, String> getGreeting() {
@@ -36,4 +43,6 @@ public class GreetingController {
         response.put("message", "Hello, this is a DELETE response!");
         return response;
     }
+
+
 }
